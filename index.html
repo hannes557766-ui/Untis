@@ -3,121 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untis</title>
+    <title>WebUntis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="manifest" href="manifest.json">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto:wght@400;500&amp;display=swap');
-        
-        :root {
-            --untis-blue: #0066cc;
-        }
-        
         body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .untis-header {
-            background: linear-gradient(135deg, #0066cc, #0055aa);
-        }
-
-        .timetable-grid {
-            display: grid;
-            grid-template-columns: 70px repeat(5, 1fr);
-            gap: 1px;
-            background: #e5e7eb;
-        }
-
-        .timetable-header {
-            background: #f8fafc;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-
-        .lesson-card {
-            background: white;
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 0.75rem;
-            line-height: 1.2;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            transition: transform 0.1s ease;
-        }
-
-        .lesson-card:hover {
-            transform: translateY(-1px);
-        }
-
-        .time-slot {
-            background: #f8fafc;
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-right: 1px solid #e5e7eb;
-        }
-
-        .nav-button {
-            transition: all 0.2s ease;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-white">
     <!-- Header -->
-    <header class="untis-header text-white shadow-sm">
-        <div class="max-w-screen-xl mx-auto px-4">
+    <header class="border-b">
+        <div class="max-w-screen-xl mx-auto px-6">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center">
-                        <span class="text-[#0066cc] text-2xl font-bold">U</span>
-                    </div>
-                    <span class="text-2xl font-semibold tracking-tight">Untis</span>
+                    <span class="text-2xl font-semibold tracking-tight">WebUntis</span>
                 </div>
                 
                 <div class="flex items-center gap-4">
-                    <div id="userInfo" class="hidden text-sm text-white/90"></div>
-                    <button onclick="logout()" 
-                            class="px-4 py-2 text-sm bg-white/20 hover:bg-white/30 rounded-xl transition-colors">
-                        Abmelden
+                    <div id="userInfo" class="hidden text-sm text-gray-600"></div>
+                    <button onclick="showSettings()" 
+                            class="px-4 py-2 text-sm hover:bg-gray-100 rounded-xl transition-colors">
+                        Einstellungen
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="max-w-screen-xl mx-auto px-4 py-6">
+    <div class="max-w-screen-xl mx-auto px-6 py-10">
         
         <!-- Login Screen -->
         <div id="loginScreen">
-            <div class="max-w-md mx-auto mt-12">
-                <div class="bg-white rounded-3xl shadow-xl p-8">
-                    <div class="flex justify-center mb-8">
-                        <div class="flex items-center gap-3">
-                            <div class="w-14 h-14 bg-[#0066cc] rounded-2xl flex items-center justify-center">
-                                <span class="text-white text-4xl font-bold">U</span>
-                            </div>
-                            <span class="text-5xl font-semibold text-gray-900">Untis</span>
-                        </div>
-                    </div>
+            <div class="max-w-md mx-auto">
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-semibold tracking-tight">Willkommen bei WebUntis</h1>
+                    <p class="text-gray-600 mt-2">Melde dich mit deinen Zugangsdaten an</p>
+                </div>
 
-                    <h2 class="text-center text-2xl font-semibold mb-8 text-gray-900">Anmelden</h2>
-
+                <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
                     <form id="loginForm" class="space-y-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Schule</label>
                             <input type="text" id="school" placeholder="gymnasium-musterstadt" 
-                                   class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#0066cc] text-sm" required>
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-gray-400 text-sm" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Benutzername</label>
-                            <input type="text" id="username" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#0066cc] text-sm" required>
+                            <input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-gray-400 text-sm" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Passwort</label>
-                            <input type="password" id="password" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#0066cc] text-sm" required>
+                            <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-gray-400 text-sm" required>
                         </div>
                         
-                        <button type="submit" 
-                                class="w-full bg-[#0066cc] hover:bg-[#0055aa] text-white font-semibold py-3.5 rounded-2xl transition-all active:scale-[0.985]">
+                        <button type="submit" id="loginButton"
+                                class="w-full bg-black hover:bg-gray-800 text-white font-medium py-3.5 rounded-2xl transition-all mt-2">
                             Anmelden
                         </button>
                     </form>
@@ -128,37 +70,75 @@
 
         <!-- Timetable Screen -->
         <div id="timetableScreen" class="hidden">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
-                    <h1 class="text-3xl font-semibold text-gray-900">Stundenplan</h1>
+                    <h1 class="text-3xl font-semibold">Stundenplan</h1>
                     <p id="weekInfo" class="text-gray-600 mt-1"></p>
                 </div>
                 
-                <div class="flex items-center gap-3">
-                    <button onclick="changeWeek(-1)" 
-                            class="nav-button flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 hover:bg-gray-50 rounded-2xl text-sm font-medium">
-                        <span>←</span> Vorherige Woche
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="showSubstitutions()" 
+                            class="px-4 py-2.5 border border-gray-300 hover:bg-gray-50 rounded-2xl text-sm font-medium">
+                        Vertretungen
                     </button>
-                    <button onclick="changeWeek(1)" 
-                            class="nav-button flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 hover:bg-gray-50 rounded-2xl text-sm font-medium">
-                        Nächste Woche <span>→</span>
+                    <button onclick="showDayView()" 
+                            class="px-4 py-2.5 border border-gray-300 hover:bg-gray-50 rounded-2xl text-sm font-medium">
+                        Tagesansicht
                     </button>
-                    <button onclick="loadCurrentWeek()" 
-                            class="nav-button px-5 py-2.5 bg-[#0066cc] text-white rounded-2xl text-sm font-medium hover:bg-[#0055aa]">
-                        Aktuelle Woche
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="changeWeek(-1)" class="px-4 py-2.5 border border-gray-300 hover:bg-gray-50 rounded-2xl text-sm">←</button>
+                        <button onclick="changeWeek(1)" class="px-4 py-2.5 border border-gray-300 hover:bg-gray-50 rounded-2xl text-sm">→</button>
+                    </div>
+                    <button onclick="loadCurrentWeek()" class="px-5 py-2.5 bg-black text-white rounded-2xl text-sm font-medium">Heute</button>
                 </div>
             </div>
 
-            <!-- Timetable Container -->
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                <div id="timetableContainer" class="p-6">
-                    <!-- Dynamically rendered timetable -->
+            <div class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+                <div id="timetableContainer" class="p-6 min-h-[420px]">
+                    <!-- Dynamisch gerendert -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Day View -->
+        <div id="dayViewScreen" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl font-semibold">Tagesansicht</h1>
+                    <p id="dayInfo" class="text-gray-600 mt-1"></p>
+                </div>
+                <button onclick="showTimetable()" class="px-4 py-2 border border-gray-300 rounded-2xl text-sm">Zurück</button>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-3xl p-6" id="dayContainer"></div>
+        </div>
+
+        <!-- Substitutions -->
+        <div id="substitutionScreen" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl font-semibold">Vertretungen</h1>
+                <button onclick="showTimetable()" class="px-4 py-2 border border-gray-300 rounded-2xl text-sm">Zurück</button>
+            </div>
+            <div id="substitutionContainer" class="bg-white border border-gray-200 rounded-3xl p-6 min-h-[300px]"></div>
+        </div>
+
+        <!-- Settings -->
+        <div id="settingsScreen" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl font-semibold">Einstellungen</h1>
+                <button onclick="showTimetable()" class="px-4 py-2 border border-gray-300 rounded-2xl text-sm">Zurück</button>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+                <div class="space-y-4">
+                    <div><span class="text-gray-500">Schule:</span> <span id="settingsSchool" class="font-medium"></span></div>
+                    <div><span class="text-gray-500">Benutzer:</span> <span id="settingsUser" class="font-medium"></span></div>
+                </div>
+                <div class="mt-8">
+                    <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl text-sm font-medium">Abmelden</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="app.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a066d04faaec339b',t:'MTc4MDU3NDgwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0672cb2bcebc603',t:'MTc4MDU3ODU5Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
