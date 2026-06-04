@@ -1,20 +1,13 @@
-const CACHE_NAME = 'untis-clone-v1';
-const urlsToCache = [
-  './',
-  './index.html',
-  'https://cdn.tailwindcss.com'
-];
+const CACHE_NAME = 'webuntis-clone-v1';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(['./', './index.html']))
   );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => response || fetch(event.request))
+    caches.match(event.request).then((response) => response || fetch(event.request))
   );
 });
